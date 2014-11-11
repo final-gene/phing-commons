@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="SetRights" default="set-rights">
+    <property name="final-gene.dir" value="data" override="true" />
+
+    <target name="set-rights" description="Set rights for dirs 775 and files 664">
+        <exec
+            command="chmod -R u=rwX,g=rwX,o=rX ${final-gene.dir}"
+            dir="${final-gene.build.path}"
+            checkreturn="true"
+            logoutput="true"
+        />
+    </target>
+</project>

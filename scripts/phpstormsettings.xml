@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="PhpStormSettings" default="convert-phpstorm-template" basedir=".">
+    <!-- required properties -->
+    <property name="final-gene.phing-commons.path" value="vendor/final-gene/phing-commons"/>
+
+    <!-- import -->
+    <import file="${final-gene.phing-commons.path}/includes/phpstormproperties.xml"/>
+    <import file="${final-gene.phing-commons.path}/includes/converttemplate.xml"/>
+
+    <target
+        name="convert-phpstorm-template"
+        depends="get-phpstorm-properties"
+        description="Create workspace.xml from template file for PhpStorm"
+    >
+        <echo msg="Convert Template for PhpStorm" />
+
+        <property
+            name="final-gene.project.path"
+            value=".idea"
+            override="true"
+        />
+        <property
+            name="final-gene.template.path"
+            value="${final-gene.phing-commons.path}/templates/phpstorm/.idea"
+            override="true"
+        />
+        <property
+            name="final-gene.workspace.file"
+            value="workspace.xml"
+            override="true"
+        />
+        <property
+            name="final-gene.workspace.template.file"
+            value="${final-gene.workspace.file}.template"
+            override="true"
+        />
+
+        <!-- prefer available template file in final-gene.project.path -->
+        <available
+            type="file"
+            file="${final-gene.project.path}/${final-gene.workspace.template.file}"
+            property="final-gene.template.path"
+            value="${final-gene.project.path}"
+        />
+
+        <if>
+            <available type="file" file="${final-gene.project.path}/${final-gene.workspace.file}" />
+            <then>
+                <fail msg="Template file '${final-gene.project.path}/${final-gene.workspace.file}' already exists" />
+            </then>
+            <else>
+                <phingcall target="convert-template" />
+            </else>
+        </if>
+    </target>
+
+</project>

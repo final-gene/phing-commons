@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="ComposerDownload" default="composer-download">
+    <property name="composer.path" value="/vol1/vhosts/composer" />
+
+    <target name="composer-download">
+        <exec
+            command="curl -sS https://getcomposer.org/installer | php -- --install-dir=${composer.path}"
+            checkreturn="true"
+            logoutput="true"
+        />
+    </target>
+</project>

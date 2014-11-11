@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="SamiGenerate" default="sami-generate">
+    <property name="sami.module" value="vendor/bin/sami.php" />
+    <property name="sami.config" value="sami.config.php" />
+    <property name="php.binary" value="php" />
+
+    <target name="sami-generate" description="Document API">
+        <exec
+            command="${php.binary} ${sami.module} update ${sami.config} -v"
+            dir="${final-gene.build.path}"
+            checkreturn="false"
+            logoutput="true"
+        />
+    </target>
+</project>

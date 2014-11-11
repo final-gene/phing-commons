@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PhpServers">
+    <option name="servers">
+      <server host="${USER_HOST}" name="development" use_path_mappings="true">
+        <path_mappings>
+          <path_mapping local_path="$PROJECT_DIR$" remote_path="${USER_PATH}" />
+        </path_mappings>
+      </server>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="PhpRemoteDebugRunConfigurationType" factoryName="PHP Remote Debug" server_name="development" session_id="evolver-debug">
+      <method />
+    </configuration>
+    <list size="0" />
+  </component>
+</project>

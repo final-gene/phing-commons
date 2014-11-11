@@ -1,0 +1,20 @@
+# Environment
+# folder ENVIRONMENT_NAME must exist in data/environment-config
+final-gene.environment.name=ENVIRONMENT_NAME
+
+# Database
+final-gene.database.hostname=DATABASE_HOST
+final-gene.database.port=DATABASE_PORT
+final-gene.database.username=DATABASE_USER
+final-gene.database.password=DATABASE_PASSWORD
+final-gene.database.dbname=DATABASE_NAME
+
+final-gene.sentry.apikey=API_KEY
+
+# Server
+final-gene.deploy.server.host=SERVER_HOST
+final-gene.deploy.server.username=SERVER_USERNAME
+final-gene.deploy.server.password=SERVER_PASSWORT
+final-gene.deploy.server.directory=SERVER_DIRECTORY
+
+

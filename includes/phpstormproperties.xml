@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="GetPhpStormProperties" default="get-phpstorm-properties">
+    <target name="get-phpstorm-properties" description="Get properties for PhpStorm template">
+        <!-- get missing properties from user prompt -->
+        <if>
+            <not><isset property="USER_PATH" /></not>
+            <then>
+                <input propertyname="USER_PATH" defaultValue="${project.basedir}" promptChar="?">
+                    Project path
+                </input>
+            </then>
+        </if>
+        <if>
+            <not><isset property="USER_HOST" /></not>
+            <then>
+                <input propertyname="USER_HOST" defaultValue="xxx.devel.final-gene.de" promptChar="?">
+                    Project host
+                </input>
+            </then>
+        </if>
+
+        <!-- fail on empty properties -->
+        <if>
+            <equals arg1="${USER_PATH}" arg2="" />
+            <then><fail message="Property 'USER_PATH' is empty" /></then>
+        </if>
+        <if>
+            <equals arg1="${USER_HOST}" arg2="" />
+            <then><fail message="Property 'USER_HOST' is empty" /></then>
+        </if>
+
+        <echo msg="Replace following variables in template files" />
+        <echo msg="Project path: USER_PATH -> ${USER_PATH}" />
+        <echo msg="Project url: USER_HOST -> ${USER_HOST}" />
+    </target>
+</project>

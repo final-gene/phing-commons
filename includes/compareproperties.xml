@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="CompareProperties" default="compare-properties">
+    <fail unless="properties.template" message="Property properties.template not set" />
+    <fail unless="properties.output" message="Property properties.output not set" />
+
+    <includepath classpath="${final-gene.phing-commons.path}/src" />
+    <taskdef name="compareproperties" classname="ComparePropertiesTask" />
+
+    <target name="compare-properties" description="Check main properties">
+        <exportproperties targetfile="${properties.dir}/${properties.output}" />
+
+        <if>
+            <not>
+                 <available type="file" file="${properties.dir}/${properties.output}" />
+            </not>
+            <then>
+                <fail message="Unable to create file ${properties.dir}/${properties.output}" />
+            </then>
+        </if>
+
+        <compareproperties
+            dir="${properties.dir}"
+            templatefiles="${properties.template}"
+            outputfile="${properties.output}"
+        />
+
+        <delete file="${properties.dir}/${properties.output}" />
+    </target>
+</project>

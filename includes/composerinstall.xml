@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="ComposerInstall" default="composer-install-dev">
+    <property name="final-gene.composer.binary" value="/vol1/vhosts/composer/composer.sh" />
+
+    <target name="composer-install-dev" description="Install dependencies for development">
+        <exec
+            command="${final-gene.composer.binary} --dev install"
+            dir="${final-gene.build.path}"
+            checkreturn="true"
+            logoutput="true"
+        />
+    </target>
+
+    <target name="composer-install-nodev" description="Install dependencies for deployment">
+        <exec
+            command="${final-gene.composer.binary} --prefer-dist --no-dev --optimize-autoloader install"
+            dir="${final-gene.build.path}"
+            checkreturn="true"
+            logoutput="true"
+        />
+    </target>
+</project>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="AssetsGenerate" default="assets-generate">
+    <property name="php.binary" value="php" />
+
+    <target name="assets-generate" description="Generate assets">
+        <exec
+            command="${php.binary} htdocs/index.php assetic build"
+            dir="${final-gene.build.path}"
+            checkreturn="false"
+            logoutput="true"
+        />
+    </target>
+</project>

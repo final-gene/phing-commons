@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="DoctrineMigrate" default="doctrine-migrate">
+    <property name="final-gene.doctrine.config" value="migrations.yml" />
+    <property name="final-gene.doctrine.module" value="vendor/bin/final-gene-doctrine-module" />
+    <property name="final-gene.config.source" value="${final-gene.build.path}/data/environment/${final-gene.environment.name}/config/autoload" />
+    <property name="final-gene.config.target" value="${final-gene.build.path}/config/autoload" />
+
+    <target name="doctrine-migrate" description="Migrate doctrine database changes">
+        <phingcall target="doctrine-pre-migrate"/>
+
+        <foreach param="filename" absparam="absfilename" target="doctrine-exec">
+            <fileset dir="${final-gene.build.path}">
+                <include name="vendor/final-gene/**/${final-gene.doctrine.config}" />
+            </fileset>
+        </foreach>
+
+        <if>
+            <available type="file" file="${final-gene.build.path}/${final-gene.doctrine.config}" />
+            <then>
+                <property name="filename" value="${final-gene.doctrine.config}" />
+                <phingcall target="doctrine-exec"/>
+            </then>
+        </if>
+
+        <phingcall target="doctrine-post-migrate"/>
+    </target>
+
+    <target name="doctrine-exec" description="Subtask execute database changes">
+        <echo msg="Execute doctrine migrations for ${filename}" />
+        <exec
+            command="${final-gene.doctrine.module} migrations:migrate --configuration ${filename}"
+            dir="${final-gene.build.path}"
+            outputProperty="cmd-output"
+        />
+        <echo msg="${cmd-output}" />
+    </target>
+
+    <target name="doctrine-pre-migrate" description="Create doctrine.local.yaml with admin-credentials">
+        <move
+            file="${final-gene.config.target}/doctrine.local.yaml"
+            tofile="${final-gene.config.target}/doctrine.local.bak"
+            overwrite="true"
+        />
+
+        <copy
+            file="${final-gene.config.source}/doctrine.local.admin"
+            tofile="${final-gene.config.target}/doctrine.local.yaml"
+            overwrite="true"
+        >
+            <filterchain>
+                <expandproperties/>
+            </filterchain>
+        </copy>
+    </target>
+
+    <target name="doctrine-post-migrate" description="Restore doctrine.local.yaml">
+        <move
+            file="${final-gene.config.target}/doctrine.local.bak"
+            tofile="${final-gene.config.target}/doctrine.local.yaml"
+            overwrite="true"
+        />
+    </target>
+
+</project>
