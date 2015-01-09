@@ -6,8 +6,6 @@
     <property name="final-gene.config.target" value="${final-gene.build.path}/config/autoload" />
 
     <target name="doctrine-migrate" description="Migrate doctrine database changes">
-        <phingcall target="doctrine-pre-migrate"/>
-
         <foreach param="filename" absparam="absfilename" target="doctrine-exec">
             <fileset dir="${final-gene.build.path}">
                 <include name="vendor/final-gene/**/${final-gene.doctrine.config}" />
@@ -21,43 +19,15 @@
                 <phingcall target="doctrine-exec"/>
             </then>
         </if>
-
-        <phingcall target="doctrine-post-migrate"/>
     </target>
 
     <target name="doctrine-exec" description="Subtask execute database changes">
         <echo msg="Execute doctrine migrations for ${filename}" />
         <exec
-            command="${final-gene.doctrine.module} migrations:migrate --configuration ${filename}"
+            command="${final-gene.doctrine.module} migrations:migrate --configuration ${filename} --no-interaction"
             dir="${final-gene.build.path}"
-            outputProperty="cmd-output"
-        />
-        <echo msg="${cmd-output}" />
-    </target>
-
-    <target name="doctrine-pre-migrate" description="Create doctrine.local.yaml with admin-credentials">
-        <move
-            file="${final-gene.config.target}/doctrine.local.yaml"
-            tofile="${final-gene.config.target}/doctrine.local.bak"
-            overwrite="true"
-        />
-
-        <copy
-            file="${final-gene.config.source}/doctrine.local.admin"
-            tofile="${final-gene.config.target}/doctrine.local.yaml"
-            overwrite="true"
-        >
-            <filterchain>
-                <expandproperties/>
-            </filterchain>
-        </copy>
-    </target>
-
-    <target name="doctrine-post-migrate" description="Restore doctrine.local.yaml">
-        <move
-            file="${final-gene.config.target}/doctrine.local.bak"
-            tofile="${final-gene.config.target}/doctrine.local.yaml"
-            overwrite="true"
+            logoutput="true"
+            checkreturn="true"
         />
     </target>
 

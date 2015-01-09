@@ -4,12 +4,13 @@
     <property name="final-gene.phing-commons.path" value="vendor/final-gene/phing-commons"/>
 
     <!-- import -->
+    <import file="${final-gene.phing-commons.path}/includes/userproperties.xml"/>
     <import file="${final-gene.phing-commons.path}/includes/phpstormproperties.xml"/>
     <import file="${final-gene.phing-commons.path}/includes/converttemplate.xml"/>
 
     <target
         name="convert-phpstorm-template"
-        depends="get-phpstorm-properties"
+        depends="get-user-properties, get-phpstorm-properties"
         description="Create workspace.xml from template file for PhpStorm"
     >
         <echo msg="Convert Template for PhpStorm" />
