@@ -7,7 +7,7 @@
     </if>
 
     <target name="convert-template" description="Create settings from template files">
-
+	
 		<echo msg="Copy templates from '${project.basedir}/${final-gene.template.path}' to '${project.basedir}/${final-gene.project.path}'" />
 
         <copy todir="${final-gene.project.path}" overwrite="true">
@@ -18,8 +18,8 @@
 				<include name="**/*.template"/>
             </fileset>
             <mapper type="glob" from="*.template" to="*" />
-        </copy>
-
+        </copy>	
+		
     </target>
-
+	
 </project>

@@ -13,11 +13,11 @@
         },
         {
             "type": "composer",
-            "url": "http://satis.devel.final-gene.de/cache"
+            "url": "http://satis.final-gene.de/cache"
         },
         {
             "type": "composer",
-            "url": "http://satis.devel.final-gene.de"
+            "url": "http://satis.final-gene.de"
         }
     ],
     "homepage": "http://www.final-gene.de/",
