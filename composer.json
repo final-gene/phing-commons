@@ -1,6 +1,8 @@
 {
     "name": "final-gene/phing-commons",
     "description": "Common phing targets",
+    "homepage": "https://gitlab.devel.final-gene.de/final-gene/phing-commons",
+    "license": "proprietary",
     "type": "library",
     "keywords": [
         "final gene",
@@ -9,19 +11,10 @@
     ],
     "repositories": [
         {
-            "packagist": false
-        },
-        {
-            "type": "composer",
-            "url": "http://satis.final-gene.de/cache"
-        },
-        {
             "type": "composer",
             "url": "http://satis.final-gene.de"
         }
     ],
-    "homepage": "http://www.final-gene.de/",
-    "license": "proprietary",
     "authors": [
         {
             "name": "Frank Giesecke",
@@ -29,13 +22,15 @@
         }
     ],
     "require": {
-        "php": ">=5.3.0",
-        "phing/phing": "~2.8"
+        "php": ">=5.5.0",
+        "phing/phing": ">=2.8 <=2.9.0"
     },
     "autoload": {
-        "classmap": ["src"]
+        "psr-4": {
+            "Evolver\\Phing\\": "src"
+        }
     },
     "require-dev": {
-        "phpunit/phpunit": "~4.1"
+        "phpunit/phpunit": "~4.5"
     }
 }
