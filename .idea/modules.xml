@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/phing-commons.iml" filepath="$PROJECT_DIR$/.idea/phing-commons.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/zf2-module-skeleton.php.iml" filepath="$PROJECT_DIR$/.idea/zf2-module-skeleton.php.iml" />
     </modules>
   </component>
 </project>
