@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="AskProperties" default="ask-properties">
+    <property name="project.properties.output" value="current-defined.properties"/>
+
+    <!-- taskdef -->
+    <taskdef name="askproperties" classname="Evolver\Phing\AskPropertiesTask" />
+
+    <target name="check-for-required-properties">
+        <fail unless="project.properties.template" message="Property project.properties.template not set" />
+    </target>
+
+    <target name="ask-properties" depends="check-for-required-properties" description="Ask user for required properties">
+        <exportproperties targetfile="${project.properties.output}" />
+
+        <if>
+            <not>
+                <available type="file" file="${project.properties.output}" />
+            </not>
+            <then>
+                <fail message="Unable to create file ${project.properties.output}" />
+            </then>
+        </if>
+
+        <trycatch>
+            <try>
+                <askproperties
+                    templatefile="${project.properties.template}"
+                    outputfile="${project.properties.output}"
+                    />
+            </try>
+
+            <finally>
+                <delete file="${project.properties.output}" />
+            </finally>
+        </trycatch>
+    </target>
+</project>

@@ -1,0 +1,12 @@
+# Local Doctrine configuration
+doctrine:
+
+    # Default ORM connection
+    connection:
+        orm_default:
+            params:
+                host: "${project.database.hostname}"
+                port: "${project.database.port}"
+                user: "${project.database.username}"
+                password: "${project.database.password}"
+                dbname: "${project.database.dbname}"

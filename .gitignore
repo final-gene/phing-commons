@@ -1,4 +1,7 @@
-/.idea
+.idea/dictionaries/
+.idea/phing.xml
+.idea/tasks.xml
+.idea/workspace.xml
 
 build
 build-frontend
