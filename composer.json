@@ -23,7 +23,7 @@
     ],
     "require": {
         "php": ">=5.5.0",
-        "phing/phing": ">=2.8 <=2.9.0"
+        "phing/phing": "^2.9"
     },
     "autoload": {
         "psr-4": {
