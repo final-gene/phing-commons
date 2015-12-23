@@ -5,7 +5,7 @@
     <target name="assets-generate" description="Generate assets">
         <exec
             command="${php.binary} htdocs/index.php assetic build"
-            dir="${final-gene.build.path}"
+            dir="${project.build.path}"
             checkreturn="false"
             logoutput="true"
         />

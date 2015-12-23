@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="ComposerDownload" default="composer-download">
-    <property name="composer.path" value="/vol1/vhosts/composer" />
+    <property name="composer.path" value="." />
 
     <target name="composer-download">
         <exec

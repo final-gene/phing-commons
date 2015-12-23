@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="DoctrineMigrate" default="doctrine-migrate">
-    <property name="final-gene.doctrine.config" value="migrations.yml" />
-    <property name="final-gene.doctrine.module" value="vendor/bin/final-gene-doctrine-module" />
-    <property name="final-gene.config.source" value="${final-gene.build.path}/data/environment/${final-gene.environment.name}/config/autoload" />
-    <property name="final-gene.config.target" value="${final-gene.build.path}/config/autoload" />
+    <property name="project.doctrine.config" value="migrations.yml" />
+    <property name="project.doctrine.module" value="vendor/bin/doctrine-module" />
+    <property name="project.config.source" value="${project.build.path}/data/environment/${project.environment.name}/config/autoload" />
+    <property name="project.config.target" value="${project.build.path}/config/autoload" />
 
     <target name="doctrine-migrate" description="Migrate doctrine database changes">
         <foreach param="filename" absparam="absfilename" target="doctrine-exec">
-            <fileset dir="${final-gene.build.path}">
-                <include name="vendor/final-gene/**/${final-gene.doctrine.config}" />
+            <fileset dir="${project.build.path}">
+                <include name="vendor/project/**/${project.doctrine.config}" />
             </fileset>
         </foreach>
 
         <if>
-            <available type="file" file="${final-gene.build.path}/${final-gene.doctrine.config}" />
+            <available type="file" file="${project.build.path}/${project.doctrine.config}" />
             <then>
-                <property name="filename" value="${final-gene.doctrine.config}" />
+                <property name="filename" value="${project.doctrine.config}" />
                 <phingcall target="doctrine-exec"/>
             </then>
         </if>
@@ -23,12 +23,11 @@
 
     <target name="doctrine-exec" description="Subtask execute database changes">
         <echo msg="Execute doctrine migrations for ${filename}" />
-        <exec
-            command="${final-gene.doctrine.module} migrations:migrate --configuration ${filename} --no-interaction"
-            dir="${final-gene.build.path}"
-            logoutput="true"
-            checkreturn="true"
-        />
+        <exec executable="${project.doctrine.module}" dir="${project.build.path}" checkreturn="true" logoutput="true">
+            <arg value="migrations:migrate" />
+            <arg value="--configuration ${filename}" />
+            <arg value="--no-interaction" />
+        </exec>
     </target>
 
 </project>

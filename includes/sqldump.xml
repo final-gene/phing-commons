@@ -12,7 +12,7 @@
                 <echo msg="Sql dumpfile ${mysql.inputfile} set by 'property mysql.inputfile' not available" />
             </then>
             <else>
-                <property name="mysql.cmd" value="${mysql.binary} -u ${final-gene.database.username} -p ${final-gene.database.password} -h ${final-gene.database.hostname} ${final-gene.database.dbname} &lt; ${mysql.inputfile}" />
+                <property name="mysql.cmd" value="${mysql.binary} -u ${project.database.username} -p ${project.database.password} -h ${project.database.hostname} ${project.database.dbname} &lt; ${mysql.inputfile}" />
                 <echo msg="Execute command '${mysql.cmd}'" />
                 <exec
                     command="${mysql.cmd}"

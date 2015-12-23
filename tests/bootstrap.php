@@ -8,7 +8,6 @@
  */
 
 error_reporting(-1);
-ini_set('memory_limit', '128M');
 
 date_default_timezone_set('Europe/Berlin');
 
@@ -20,10 +19,5 @@ umask(0002);
 
 chdir(dirname(__DIR__));
 
-/**
- * @var \Composer\Autoload\ClassLoader $autoloader
- */
-$autoloader = require 'vendor/autoload.php';
-$autoloader->addClassMap(["src"]);
-
+require 'vendor/autoload.php';
 require 'vendor/phing/phing/test/bootstrap.php';
