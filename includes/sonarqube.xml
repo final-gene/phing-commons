@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="SonarQube" default="sonar-scanner">
+
+    <target name="sonar-scanner">
+        <exec executable="sonar-runner" checkreturn="true" logoutput="true" />
+    </target>
+
+</project>

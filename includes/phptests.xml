@@ -8,4 +8,11 @@
         </exec>
     </target>
 
+    <target name="phpunit-analyze">
+        <exec executable="vendor/bin/phpunit" checkreturn="true" logoutput="false">
+            <arg line="--coverage-clover ${project.build.path}/.report/phpunit.coverage.xml" />
+            <arg line="--log-junit ${project.build.path}/.report/phpunit.xml" />
+        </exec>
+    </target>
+
 </project>
