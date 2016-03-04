@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="AssetsGenerate" default="assets-generate">
+
+    <!-- required properties -->
+    <property name="project.build.path" value=""/>
     <property name="php.binary" value="php" />
 
     <target name="assets-generate" description="Generate assets">

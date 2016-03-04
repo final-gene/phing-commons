@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="SamiGenerate" default="sami-generate">
+
+    <!-- required properties -->
+    <property name="project.build.path" value=""/>
     <property name="sami.module" value="vendor/bin/sami.php" />
     <property name="sami.config" value="sami.config.php" />
     <property name="php.binary" value="php" />

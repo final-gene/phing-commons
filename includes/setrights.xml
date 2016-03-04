@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="SetRights" default="set-rights">
+
+    <!-- required properties -->
+    <property name="project.build.path" value=""/>
     <property name="project.data.dir" value="data" override="true" />
 
     <target name="set-rights" description="Set rights for dirs 775 and files 664">

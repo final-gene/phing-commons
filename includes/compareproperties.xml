@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="CompareProperties" default="compare-properties">
 
+    <!-- required properties -->
+    <property name="project.properties.template" value=""/>
+    <property name="project.properties.output" value=""/>
+
     <taskdef name="compareproperties" classname="FinalGene\Phing\ComparePropertiesTask" />
 
     <target name="check-for-required-properties">

@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="SqlDump" default="input-sql">
+
+    <!-- required properties -->
+    <property name="project.database.hostname" value=""/>
+    <property name="project.database.username" value=""/>
+    <property name="project.database.password" value=""/>
+    <property name="project.database.dbname" value=""/>
     <property name="mysql.binary" value="mysql" />
     <property name="mysql.inputfile" value="data.sql" />
 

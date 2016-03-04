@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Deployment">
+
+    <!-- required properties -->
+    <property name="project.build.path" value=""/>
+    <property name="project.deploy.path" value="${project.build.path}/.deploy" description="deploy path to create temp. files"/>
+    <property name="project.artifact.path" value="${project.build.path}/.build" description="source path for build"/>
+    <property name="project.deploy.remote.host" value="" description="name or address of a remote server"/>
+    <property name="project.deploy.remote.port" value="" description="remote server port"/>
+    <property name="project.deploy.remote.dir" value="" description="target dir on the remote server port"/>
+    <property name="project.deploy.remote.user" value="" description="user to connect with to a remote server"/>
+    <property name="project.deploy.db.user" value="" description="database user for deployment"/>
+    <property name="project.deploy.db.password" value="" description="database password for deployment"/>
+
+    <target name="create-deployment-archive">
+        <mkdir dir="${project.deploy.path}"/>
+        <exec executable="tar" checkreturn="true" logoutput="true">
+            <arg value="-czf"/>
+            <arg value="${project.deploy.path}/deploy.tgz"/>
+            <arg value="${project.artifact.path}/"/>
+        </exec>
+    </target>
+
+    <target name="deploy-ssh">
+        <phingcall target="create-deployment-archive"/>
+
+        <!-- transfer files -->
+        <echo msg="transfer new version"/>
+        <copy file="${project.build.path}/deploy.sh" todir="${project.deploy.path}"/>
+        <chmod file="${project.deploy.path}/deploy.sh" mode="0770"/>
+        <exec executable="scp" checkreturn="true" logoutput="true">
+            <arg line="-P ${project.deploy.remote.port}"/>
+            <arg line="-o UserKnownHostsFile=/dev/null"/>
+            <arg line="-o StrictHostKeyChecking=no"/>
+            <arg value="${project.deploy.path}/*"/>
+            <arg line="${project.deploy.remote.user}@${project.deploy.remote.host}:${project.deploy.remote.dir}"/>
+        </exec>
+
+        <!-- execute remote install script -->
+        <echo msg="execute install script"/>
+        <exec executable="ssh" checkreturn="true" logoutput="true">
+            <arg line="-l ${project.deploy.remote.user}"/>
+            <arg line="-p ${project.deploy.remote.port}"/>
+            <arg line="-o UserKnownHostsFile=/dev/null"/>
+            <arg line="-o StrictHostKeyChecking=no"/>
+            <arg value="${project.deploy.remote.host}"/>
+            <arg line="'cd ${project.deploy.remote.dir} &amp;&amp; export DB_ADMIN_USER=${project.deploy.db.user} &amp;&amp; DB_ADMIN_PASSWORD=${project.deploy.db.password} &amp;&amp; ./deploy.sh'"/>
+        </exec>
+
+        <delete dir="${project.deploy.path}" includeemptydirs="true"/>
+    </target>
+</project>

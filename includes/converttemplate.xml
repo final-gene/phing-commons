@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="ConvertTemplate" default="convert-template">
+
+    <!-- required properties -->
+    <property name="project.build.path" value=""/>
+    <property name="project.template.path" value=""/>
+    <property name="project.project.path" value=""/>
+
 	<!-- fail on empty properties -->
     <if>
         <equals arg1="${project.template.path}" arg2="" />
