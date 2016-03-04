@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="AskProperties" default="ask-properties">
+
+    <!-- required properties -->
+    <property name="project.properties.template" value=""/>
     <property name="project.properties.output" value="current-defined.properties"/>
 
     <!-- taskdef -->
-    <taskdef name="askproperties" classname="Evolver\Phing\AskPropertiesTask" />
+    <taskdef name="askproperties" classname="FinalGene\Phing\AskPropertiesTask" />
 
     <target name="check-for-required-properties">
         <fail unless="project.properties.template" message="Property project.properties.template not set" />

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="PhpTests" default="phpunit-summary">
 
+    <!-- required properties -->
+    <property name="project.build.path" value=""/>
+
     <target name="phpunit-summary">
         <exec executable="vendor/bin/phpunit" checkreturn="true" logoutput="true">
             <arg value="--coverage-text" />

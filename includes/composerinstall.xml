@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="ComposerInstall" default="composer-install-dev">
 
+    <!-- required properties -->
+    <property name="project.build.path" value=""/>
+
     <target name="composer-install-dev" description="Install dependencies for development">
         <exec executable="composer" dir="${project.build.path}" checkreturn="true" logoutput="true">
             <arg value="install" />

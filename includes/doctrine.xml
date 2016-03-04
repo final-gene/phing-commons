@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="DoctrineMigrate" default="doctrine-migrate">
+
+    <!-- required properties -->
+    <property name="project.build.path" value=""/>
+    <property name="project.environment.name" value=""/>
     <property name="project.doctrine.config" value="migrations.yml" />
     <property name="project.doctrine.module" value="vendor/bin/doctrine-module" />
     <property name="project.config.source" value="${project.build.path}/data/environment/${project.environment.name}/config/autoload" />
@@ -13,7 +17,7 @@
         </foreach>
 
         <if>
-            <available type="file" file="${project.build.path}/${project.doctrine.config}" />
+            <available type="file" file="${project.build.path}/${project.doctrine.config}"/>
             <then>
                 <property name="filename" value="${project.doctrine.config}" />
                 <phingcall target="doctrine-exec"/>

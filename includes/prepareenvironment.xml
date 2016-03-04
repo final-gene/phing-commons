@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="PrepareEnvironment" default="prepare-environment">
+
+    <!-- required properties -->
+    <property name="project.path.source" value=""/>
+    <property name="project.path.target" value=""/>
+
     <target name="prepare-environment" description="Copy files from path.source to path.target and replace the template properties with their values">
         <fail unless="project.path.source" message="Property project.path.source not set"/>
         <fail unless="project.path.target" message="Property project.path.target not set"/>
@@ -9,8 +14,7 @@
                 <expandproperties/>
             </filterchain>
 
-            <fileset
-                    dir="${project.path.source}">
+            <fileset dir="${project.path.source}">
                 <include name="**"/>
             </fileset>
         </copy>
