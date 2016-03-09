@@ -44,7 +44,7 @@
             <arg line="-o UserKnownHostsFile=/dev/null"/>
             <arg line="-o StrictHostKeyChecking=no"/>
             <arg value="${project.deploy.remote.host}"/>
-            <arg line="'cd ${project.deploy.remote.dir} &amp;&amp; export DB_ADMIN_USER=${project.deploy.db.user} &amp;&amp; DB_ADMIN_PASSWORD=${project.deploy.db.password} &amp;&amp; ./deploy.sh'"/>
+            <arg line="'cd ${project.deploy.remote.dir} &amp;&amp; export DB_ADMIN_USER=${project.deploy.db.user} &amp;&amp; export DB_ADMIN_PASSWORD=${project.deploy.db.password} &amp;&amp; ./deploy.sh'"/>
         </exec>
 
         <delete dir="${project.deploy.path}" includeemptydirs="true"/>
