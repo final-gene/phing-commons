@@ -38,19 +38,13 @@
 
         <!-- execute remote install script -->
         <echo msg="execute install script"/>
-        <php function="escapeshellarg" returnProperty="project.deploy.db.user.escaped" level="verbose">
-            <param value="${project.deploy.db.user}" />
-        </php>
-        <php function="escapeshellarg" returnProperty="project.deploy.db.password.escaped" level="verbose">
-            <param value="${project.deploy.db.password}" />
-        </php>
         <exec executable="ssh" checkreturn="true" logoutput="true">
             <arg line="-l ${project.deploy.remote.user}"/>
             <arg line="-p ${project.deploy.remote.port}"/>
             <arg line="-o UserKnownHostsFile=/dev/null"/>
             <arg line="-o StrictHostKeyChecking=no"/>
             <arg value="${project.deploy.remote.host}"/>
-            <arg line="'cd ${project.deploy.remote.dir} &amp;&amp; export DB_ADMIN_USER=${project.deploy.db.user.escaped} &amp;&amp; export DB_ADMIN_PASSWORD=${project.deploy.db.password.escaped} &amp;&amp; ./deploy.sh'"/>
+            <arg line="'cd ${project.deploy.remote.dir} &amp;&amp; export DB_ADMIN_USER=${project.deploy.db.user} &amp;&amp; export DB_ADMIN_PASSWORD=${project.deploy.db.password} &amp;&amp; ./deploy.sh'"/>
         </exec>
 
         <delete dir="${project.deploy.path}" includeemptydirs="true"/>

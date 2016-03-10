@@ -17,10 +17,7 @@
         </foreach>
 
         <if>
-            <available property="project.doctrine.config.exists"
-                       type="file"
-                       file="${project.build.path}/${project.doctrine.config}"
-            />
+            <available type="file" file="${project.build.path}/${project.doctrine.config}"/>
             <then>
                 <property name="filename" value="${project.doctrine.config}" />
                 <phingcall target="doctrine-exec"/>
