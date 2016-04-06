@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="PhpTests" default="phpunit-summary">
+<project name="PhpTests" default="phpunit-analyze">
 
     <!-- required properties -->
     <property name="project.build.path" value=""/>
 
-    <target name="phpunit-summary">
-        <exec executable="vendor/bin/phpunit" checkreturn="true" logoutput="true">
-            <arg value="--coverage-text" />
-            <arg value="--colors=never" />
-        </exec>
-    </target>
-
     <target name="phpunit-analyze">
-        <exec executable="vendor/bin/phpunit" checkreturn="true" logoutput="false">
+        <exec executable="vendor/bin/phpunit" checkreturn="true" logoutput="true">
             <arg line="--coverage-clover ${project.build.path}/.report/phpunit.coverage.xml" />
             <arg line="--log-junit ${project.build.path}/.report/phpunit.xml" />
+            <arg value="--coverage-text" />
+            <arg value="--colors=never" />
         </exec>
     </target>
 
