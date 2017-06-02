@@ -1,7 +1,7 @@
 {
     "name": "final-gene/phing-commons",
     "description": "Common phing targets",
-    "homepage": "https://gitlab.devel.final-gene.de/final-gene/phing-commons",
+    "homepage": "https://gitlab.final-gene.de/final-gene/phing-commons",
     "license": "proprietary",
     "type": "library",
     "keywords": [
@@ -12,7 +12,7 @@
     "repositories": [
         {
             "type": "composer",
-            "url": "http://satis.final-gene.de"
+            "url": "https://satis.final-gene.de"
         }
     ],
     "authors": [
@@ -27,7 +27,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Evolver\\Phing\\": "src"
+            "FinalGene\\Phing\\": "src"
         }
     },
     "require-dev": {

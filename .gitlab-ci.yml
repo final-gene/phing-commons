@@ -1,9 +1,60 @@
+# define stages
 types:
-  - test
+  - test:basis
+  - test:run
 
-job_unit_test:
-  type: test
+########################################################################################################################
+# test stages
+
+# run composer and load (dev) dependencies
+test:composer:
+  type: test:basis
   tags:
-    - phpunit
+    - docker
+  image: docker.final-gene.de/docker/final-gene/composer
   script:
-    - phing run-test
+    - composer validate --no-check-all --no-check-publish
+    - composer install --no-interaction --ignore-platform-reqs
+  artifacts:
+    paths:
+      - vendor/
+    expire_in: 1 hour
+
+# run php lint
+test:phpunit:5.6:
+  type: test:run
+  tags:
+    - docker
+  dependencies:
+    - test:composer
+  image: docker.final-gene.de/docker/final-gene/php-cli:5.6
+  script:
+    # lint php files
+    - find src/ -name '*.php' -print0 | xargs -0 php -l
+    - find tests/ -name '*.php' -print0 | xargs -0 php -l
+
+# run php lint
+test:phpunit:7.0:
+  type: test:run
+  tags:
+    - docker
+  dependencies:
+    - test:composer
+  image: docker.final-gene.de/docker/final-gene/php-cli:7.0
+  script:
+    # lint php files
+    - find src/ -name '*.php' -print0 | xargs -0 php -l
+    - find tests/ -name '*.php' -print0 | xargs -0 php -l
+
+# run php lint
+test:phpunit:7.1:
+  type: test:run
+  tags:
+    - docker
+  dependencies:
+    - test:composer
+  image: docker.final-gene.de/docker/final-gene/php-cli:7.1-xdebug
+  script:
+    # lint php files
+    - find src/ -name '*.php' -print0 | xargs -0 php -l
+    - find tests/ -name '*.php' -print0 | xargs -0 php -l
