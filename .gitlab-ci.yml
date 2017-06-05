@@ -11,7 +11,7 @@ test:composer:
   type: test:basis
   tags:
     - docker
-  image: docker.final-gene.de/docker/final-gene/composer
+  image: finalgene/composer
   script:
     - composer validate --no-check-all --no-check-publish
     - composer install --no-interaction --ignore-platform-reqs
@@ -27,7 +27,7 @@ test:phpunit:5.6:
     - docker
   dependencies:
     - test:composer
-  image: docker.final-gene.de/docker/final-gene/php-cli:5.6
+  image: finalgene/php-cli:5.6
   script:
     # lint php files
     - find src/ -name '*.php' -print0 | xargs -0 php -l
@@ -40,7 +40,7 @@ test:phpunit:7.0:
     - docker
   dependencies:
     - test:composer
-  image: docker.final-gene.de/docker/final-gene/php-cli:7.0
+  image: finalgene/php-cli:7.0
   script:
     # lint php files
     - find src/ -name '*.php' -print0 | xargs -0 php -l
@@ -53,7 +53,7 @@ test:phpunit:7.1:
     - docker
   dependencies:
     - test:composer
-  image: docker.final-gene.de/docker/final-gene/php-cli:7.1-xdebug
+  image: finalgene/php-cli:7.1-xdebug
   script:
     # lint php files
     - find src/ -name '*.php' -print0 | xargs -0 php -l
