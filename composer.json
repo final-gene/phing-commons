@@ -1,19 +1,13 @@
 {
     "name": "final-gene/phing-commons",
     "description": "Common phing targets",
-    "homepage": "https://gitlab.final-gene.de/final-gene/phing-commons",
-    "license": "proprietary",
+    "homepage": "https://github.com/final-gene/phing-commons",
+    "license": "MIT",
     "type": "library",
     "keywords": [
         "final gene",
         "phing",
         "deployment"
-    ],
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "https://satis.final-gene.de"
-        }
     ],
     "authors": [
         {
