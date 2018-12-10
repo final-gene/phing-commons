@@ -9,3 +9,4 @@ release
 vendor
 
 phpunit.xml
+composer.lock
